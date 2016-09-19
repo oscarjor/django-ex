@@ -6,8 +6,8 @@ class Employer(models.Model):
 	companyname = models.CharField(max_length=200)
 	email = models.CharField(max_length=200)
 	creation_date = models.DateTimeField('Creation Date', blank=True, null=True)
-	browser = models.CharField(max_length=1000)
-	ip = models.CharField(max_length=200)
+	browser = models.CharField(max_length=1000, blank=True, null=True)
+	ip = models.CharField(max_length=200, blank=True, null=True)
 
 	def __str__(self):
 		return self.name
@@ -18,8 +18,8 @@ class Employee(models.Model):
 	email = models.CharField(max_length=200)
 	creation_date = models.DateTimeField('Creation Date', blank=True, null=True)
 	employer = models.ForeignKey(Employer, blank=True, null=True)
-	browser = models.CharField(max_length=1000)
-	ip = models.CharField(max_length=200)
+	browser = models.CharField(max_length=1000, blank=True, null=True)
+	ip = models.CharField(max_length=200, blank=True, null=True)
 
 	def __str__(self):
 		return self.name
@@ -110,10 +110,10 @@ class Motivation(models.Model):
 
 # Motivational Quotes Class.
 class Message(models.Model):	
-	employee = models.ManyToManyField(Employee, blank=True, null=True)
-	quote = models.ManyToManyField(Quote, blank=True, null=True)
-	exercise = models.ManyToManyField(Exercise, blank=True, null=True)
-	motivation = models.ManyToManyField(Motivation, blank=True, null=True)
+	employee = models.ManyToManyField(Employee)
+	quote = models.ManyToManyField(Quote)
+	exercise = models.ManyToManyField(Exercise)
+	motivation = models.ManyToManyField(Motivation)
 	creation_date = models.DateTimeField('Creation Date', blank=True, null=True)
 	employer = models.ForeignKey(Employer, blank=True, null=True)
 
